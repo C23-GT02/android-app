@@ -1,5 +1,6 @@
 package com.example.geotag.data.retrofit
 
+import com.example.geotag.data.okhttp.okHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -12,15 +13,20 @@ object RetrofitClient {
     val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
+        .client(okHttpClient)
         .build()
 }
 
 // Fetch API Endpoints
-fun <T> fetch(call: Call<T>, success: (T?) -> Unit, error: (Int, String) -> Unit) {
+fun <T> fetch(call: Call<T>, success: (T?, Map<String, String>?) -> Unit, error: (Int, String) -> Unit) {
     call.enqueue(object : Callback<T> {
         override fun onResponse(call: Call<T>, response: Response<T>) {
             if (response.isSuccessful) {
-                success(response.body())
+                val responseData: T? = response.body()
+                val headers: Map<String, String> = response.headers().toMultimap()
+                    .mapValues { it.value.joinToString(separator = ", ") }
+
+                success(responseData, headers)
             } else {
                 error(response.code(), response.message())
             }
@@ -32,6 +38,7 @@ fun <T> fetch(call: Call<T>, success: (T?) -> Unit, error: (Int, String) -> Unit
         }
     })
 }
+
 
 
 val apiService: ApiService = RetrofitClient.retrofit.create(ApiService::class.java)

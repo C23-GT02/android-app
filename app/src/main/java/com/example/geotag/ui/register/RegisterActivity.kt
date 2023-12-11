@@ -1,24 +1,20 @@
 package com.example.geotag.ui.register
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.geotag.R
-import com.example.geotag.ui.login.LoginActivity
 import com.example.geotag.data.models.RegisterModel
 import com.example.geotag.data.response.SignUpResponse
-import com.example.geotag.data.retrofit.RetrofitClient
-import com.example.geotag.data.retrofit.ApiService
 import com.example.geotag.data.retrofit.apiService
 import com.example.geotag.data.retrofit.fetch
+import com.example.geotag.ui.login.LoginActivity
 import com.example.geotag.ui.welcome.WelcomeActivity
 import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -68,7 +64,7 @@ class RegisterActivity : AppCompatActivity() {
         val call: Call<SignUpResponse> = apiService.registerUser(registrationRequest)
 
         fetch(call,
-            success = { response ->
+            success = { response, header ->
                 println(response)
                 showToast("Registration successful")
                 navigateToLoginActivity()
