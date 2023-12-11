@@ -9,10 +9,12 @@ import android.widget.ImageButton
 import android.widget.Toast
 import com.example.geotag.R
 import com.example.geotag.ui.login.LoginActivity
-import com.example.geotag.data.pref.RegisterModel
+import com.example.geotag.data.models.RegisterModel
 import com.example.geotag.data.response.SignUpResponse
-import com.example.geotag.data.retrofit.ApiConfig
+import com.example.geotag.data.retrofit.RetrofitClient
 import com.example.geotag.data.retrofit.ApiService
+import com.example.geotag.data.retrofit.apiService
+import com.example.geotag.data.retrofit.fetch
 import com.example.geotag.ui.welcome.WelcomeActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -56,7 +58,6 @@ class RegisterActivity : AppCompatActivity() {
         val password = passwordEditText.text.toString()
 
         // Perform the registration API call
-        val apiService = ApiConfig.retrofit.create(ApiService::class.java)
         val registrationRequest = RegisterModel(
             firstname = firstname,
             lastname = lastname,
@@ -66,21 +67,17 @@ class RegisterActivity : AppCompatActivity() {
 
         val call: Call<SignUpResponse> = apiService.registerUser(registrationRequest)
 
-        call.enqueue(object : Callback<SignUpResponse> {
-            override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
-                if (response.isSuccessful) {
-                    val responseData: SignUpResponse? = response.body()
-                    showToast(responseData?.message ?: "Registration successful")
-                    navigateToLoginActivity()
-                } else {
-                    showToast("Registration failed")
-                }
+        fetch(call,
+            success = { response ->
+                println(response)
+                showToast("Registration successful")
+                navigateToLoginActivity()
+            },
+            error = { code, message ->
+                // Handle error
+                showToast("Registration failed: $message")
             }
-
-            override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
-                showToast("Network request failed")
-            }
-        })
+        )
     }
 
     private fun showToast(message: String) {

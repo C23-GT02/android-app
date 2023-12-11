@@ -28,6 +28,10 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun login () {
+
+    }
+
     override fun onBackPressed() {
         super.onBackPressed()
         // Override the back button press
