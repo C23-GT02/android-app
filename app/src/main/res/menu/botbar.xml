@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottom_home"
+        android:icon="@drawable/homeico"
+        android:title="@string/homestring" />
+
+    <item
+        android:id="@+id/bottom_scan"
+        android:icon="@drawable/settingico"
+        android:title="@string/scanstring" />
+
+    <item
+        android:id="@+id/bottom_history"
+        android:icon="@drawable/historyico"
+        android:title="@string/historystring" />
+
+    <item
+        android:id="@+id/bottom_profile"
+        android:icon="@drawable/profileico"
+        android:title="@string/profilestring" />
+</menu>

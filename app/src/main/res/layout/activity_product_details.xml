@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.productdetail.ProductDetailsActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_viewtopbar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:backgroundTint="#236804">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/back_btn3"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/back_imgs2"
+                    android:contentDescription="Back button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.011"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/title_product1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Product Details"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/back_btn3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.406"
+                    app:layout_constraintStart_toEndOf="@id/back_btn3"
+                    app:layout_constraintTop_toTopOf="@id/back_btn3" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/products1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="21dp"
+            android:background="@drawable/jahe1"
+            app:layout_constraintBottom_toTopOf="@+id/cardView2"
+            app:layout_constraintEnd_toStartOf="@+id/tv_titleproducts"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_viewtopbar" />
+
+        <TextView
+            android:id="@+id/tv_titleproducts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="Healthy skin's jamu"
+            android:autoSizeMaxTextSize="10dp"
+            android:autoSizeMinTextSize="10dp"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.17"
+            app:layout_constraintStart_toEndOf="@+id/products1"
+            app:layout_constraintTop_toBottomOf="@+id/card_viewtopbar"
+            app:layout_constraintBottom_toTopOf="@id/tv_titleshop"/>
+
+        <TextView
+            android:id="@+id/tv_titleshop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="By Homa Herbs"
+            app:layout_constraintEnd_toEndOf="@+id/tv_titleproducts"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tv_titleproducts"
+            app:layout_constraintTop_toBottomOf="@+id/tv_titleproducts"
+            app:layout_constraintBottom_toTopOf="@id/card_viewverified"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_viewverified"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@id/tv_titleshop"
+            app:layout_constraintTop_toBottomOf="@id/tv_titleshop"
+            app:layout_constraintBottom_toBottomOf="@id/products1"
+            android:backgroundTint="#236804"
+            android:elevation="10dp">
+
+            <TextView
+                android:id="@+id/tv_verified"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Verified"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:layout_gravity="center"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:elevation="10dp"
+            app:layout_constraintEnd_toEndOf="@id/tv_titleproducts"
+            app:layout_constraintStart_toStartOf="@id/products1"
+            app:layout_constraintTop_toBottomOf="@id/products1">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvtitledesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Product Description"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.064"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tvtitledesc2"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/lines"
+                    app:layout_constraintBottom_toTopOf="@id/tvtitledesc2"
+                    app:layout_constraintEnd_toEndOf="@id/tvtitledesc"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@id/tvtitledesc"
+                    app:layout_constraintTop_toBottomOf="@id/tvtitledesc"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/tvtitledesc2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginRight="12dp"
+                    android:text="Pertama kali diracik di Malang, Jawa Timur. Mengandalkan rempah asli Indonesia yang segar, yaitu kunyit, jahe dan lemon. Membantu untuk menutrisi kulit dari dalam, membersihkan racun pada kulit dan membuat kulit lebih sehat"
+                    app:layout_constraintTop_toBottomOf="@+id/tvtitledesc"
+                    app:layout_constraintStart_toStartOf="@+id/tvtitledesc"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/title_raw_material"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="21dp"
+            android:text="Raw Material"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@id/cardView2"
+            app:layout_constraintStart_toStartOf="@id/cardView2"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/lines"
+            app:layout_constraintBottom_toTopOf="@id/title_raw_material"
+            app:layout_constraintEnd_toEndOf="@id/title_raw_material"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/title_raw_material"
+            app:layout_constraintTop_toBottomOf="@id/title_raw_material"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:elevation="10dp"
+            app:layout_constraintEnd_toEndOf="@id/cardView2"
+            app:layout_constraintStart_toStartOf="@id/cardView2"
+            app:layout_constraintTop_toBottomOf="@id/title_raw_material">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
