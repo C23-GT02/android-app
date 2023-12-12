@@ -20,7 +20,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         val backButton = findViewById<ImageButton>(R.id.back_btn)
-        val loginBtn = findViewById<Button>(R.id.btn_login)
         emailLayout = findViewById(R.id.layout_email)
         passwordLayout = findViewById(R.id.layout_password)
 
@@ -45,6 +44,7 @@ class LoginActivity : AppCompatActivity() {
         // For example, displaying a toast message
         if (email.isNotEmpty() && password.isNotEmpty()) {
             Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+            navigateToHomeActivity()
         } else {
             Toast.makeText(this, "Please enter valid email and password", Toast.LENGTH_SHORT).show()
         }

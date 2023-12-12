@@ -17,6 +17,7 @@ import com.example.geotag.data.adapter.ProductAdapter
 import com.example.geotag.data.data2.PartnersData
 import com.example.geotag.data.data2.ProductData
 import com.example.geotag.ui.history.HistoryActivity
+import com.example.geotag.ui.productdetail.ProductDetailsActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -31,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        horizontalScrollView = findViewById<HorizontalScrollView>(R.id.hz_scrollview)
+        horizontalScrollView = findViewById(R.id.hz_scrollview)
 
         // Create dummy data partners
         val partnersDataList = PartnersData.partnersDataList()
@@ -43,6 +44,19 @@ class MainActivity : AppCompatActivity() {
         val layoutManager = GridLayoutManager(this, numberOfColumns)
         recyclerView.layoutManager = layoutManager
         productAdapter = ProductAdapter(ProductData.productDataList())
+
+        productAdapter.setOnItemClickListener(object : ProductAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                // Get the selected product
+                val selectedProduct = ProductData.productDataList()[position]
+
+                // Navigate to DetailProductActivity with the selected product
+                val intent = Intent(this@MainActivity, ProductDetailsActivity::class.java)
+                intent.putExtra("product", selectedProduct)
+                startActivity(intent)
+            }
+        })
+
         recyclerView.adapter = productAdapter
 
 
