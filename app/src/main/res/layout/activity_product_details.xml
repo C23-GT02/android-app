@@ -17,6 +17,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/products1"
             android:backgroundTint="#236804">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -50,8 +51,6 @@
                     app:layout_constraintStart_toEndOf="@id/back_btn3"
                     app:layout_constraintTop_toTopOf="@id/back_btn3" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
         </androidx.cardview.widget.CardView>
 
         <ImageView
@@ -62,13 +61,13 @@
             android:layout_marginEnd="6dp"
             android:layout_marginBottom="21dp"
             android:background="@drawable/jahe1"
-            app:layout_constraintBottom_toTopOf="@+id/cardView2"
-            app:layout_constraintEnd_toStartOf="@+id/tv_titleproducts"
+            app:layout_constraintBottom_toTopOf="@+id/cv_product_desc"
+            app:layout_constraintEnd_toStartOf="@+id/tv_title_products"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/card_viewtopbar" />
 
         <TextView
-            android:id="@+id/tv_titleproducts"
+            android:id="@+id/tv_title_products"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
@@ -89,10 +88,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="By Homa Herbs"
-            app:layout_constraintEnd_toEndOf="@+id/tv_titleproducts"
+            app:layout_constraintEnd_toEndOf="@+id/tv_title_products"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/tv_titleproducts"
-            app:layout_constraintTop_toBottomOf="@+id/tv_titleproducts"
+            app:layout_constraintStart_toStartOf="@+id/tv_title_products"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_products"
             app:layout_constraintBottom_toTopOf="@id/card_viewverified"/>
 
         <androidx.cardview.widget.CardView
@@ -103,6 +102,7 @@
             app:layout_constraintStart_toStartOf="@id/tv_titleshop"
             app:layout_constraintTop_toBottomOf="@id/tv_titleshop"
             app:layout_constraintBottom_toBottomOf="@id/products1"
+            app:layout_constraintEnd_toEndOf="@id/tv_titleshop"
             android:backgroundTint="#236804"
             android:elevation="10dp">
 
@@ -116,59 +116,16 @@
                 android:layout_gravity="center"/>
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
+        <include
+            android:id="@+id/cv_product_desc"
+            layout="@layout/cardview_productdesc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:elevation="10dp"
-            app:layout_constraintEnd_toEndOf="@id/tv_titleproducts"
+            app:layout_constraintTop_toBottomOf="@id/card_viewverified"
             app:layout_constraintStart_toStartOf="@id/products1"
-            app:layout_constraintTop_toBottomOf="@id/products1">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/tvtitledesc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Product Description"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.064"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/tvtitledesc2"/>
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/lines"
-                    app:layout_constraintBottom_toTopOf="@id/tvtitledesc2"
-                    app:layout_constraintEnd_toEndOf="@id/tvtitledesc"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@id/tvtitledesc"
-                    app:layout_constraintTop_toBottomOf="@id/tvtitledesc"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <TextView
-                    android:id="@+id/tvtitledesc2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="12dp"
-                    android:text="Pertama kali diracik di Malang, Jawa Timur. Mengandalkan rempah asli Indonesia yang segar, yaitu kunyit, jahe dan lemon. Membantu untuk menutrisi kulit dari dalam, membersihkan racun pada kulit dan membuat kulit lebih sehat"
-                    app:layout_constraintTop_toBottomOf="@+id/tvtitledesc"
-                    app:layout_constraintStart_toStartOf="@+id/tvtitledesc"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+            app:layout_constraintEnd_toEndOf="@id/tv_title_products"
+            app:layout_constraintBottom_toTopOf="@id/title_raw_material"
+            android:layout_marginTop="25dp"/>
 
         <TextView
             android:id="@+id/title_raw_material"
@@ -180,9 +137,10 @@
             android:text="Raw Material"
             android:textStyle="bold"
             android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="@id/cardView2"
-            app:layout_constraintStart_toStartOf="@id/cardView2"
-            app:layout_constraintTop_toBottomOf="@+id/cardView2"/>
+            app:layout_constraintEnd_toEndOf="@id/cv_product_desc"
+            app:layout_constraintStart_toStartOf="@id/cv_product_desc"
+            app:layout_constraintTop_toBottomOf="@+id/cv_product_desc"
+            app:layout_constraintBottom_toTopOf="@id/title_raw_material"/>
 
         <ImageView
             android:layout_width="0dp"
@@ -195,22 +153,125 @@
             app:layout_constraintTop_toBottomOf="@id/title_raw_material"
             app:layout_constraintVertical_bias="0.0" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView3"
+        <include
+            android:id="@+id/cv_raw_material"
+            layout="@layout/cardview_rawmaterial"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:elevation="10dp"
-            app:layout_constraintEnd_toEndOf="@id/cardView2"
-            app:layout_constraintStart_toStartOf="@id/cardView2"
-            app:layout_constraintTop_toBottomOf="@id/title_raw_material">
+            app:layout_constraintTop_toBottomOf="@id/title_raw_material"
+            app:layout_constraintStart_toStartOf="@id/products1"
+            app:layout_constraintEnd_toEndOf="@id/tv_title_products"
+            android:layout_marginTop="10dp"/>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/title_how_it_made"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="21dp"
+            android:text="How It Made"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@id/title_raw_material"
+            app:layout_constraintStart_toStartOf="@id/title_raw_material"
+            app:layout_constraintTop_toBottomOf="@+id/cv_raw_material"
+            app:layout_constraintBottom_toTopOf="@id/cv_how_it_made"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/lines"
+            app:layout_constraintBottom_toTopOf="@id/title_how_it_made"
+            app:layout_constraintEnd_toEndOf="@id/title_how_it_made"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/title_how_it_made"
+            app:layout_constraintTop_toBottomOf="@id/title_how_it_made"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <include
+            android:id="@+id/cv_how_it_made"
+            layout="@layout/cardview_howitmade"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/title_how_it_made"
+            app:layout_constraintStart_toStartOf="@id/products1"
+            app:layout_constraintEnd_toEndOf="@id/tv_title_products"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/title_packaging"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="21dp"
+            android:text="Packaging"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@id/title_raw_material"
+            app:layout_constraintStart_toStartOf="@id/title_raw_material"
+            app:layout_constraintTop_toBottomOf="@+id/cv_how_it_made"
+            app:layout_constraintBottom_toTopOf="@id/cv_packaging"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/lines"
+            app:layout_constraintBottom_toTopOf="@id/title_packaging"
+            app:layout_constraintEnd_toEndOf="@id/title_packaging"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/title_packaging"
+            app:layout_constraintTop_toBottomOf="@id/title_packaging"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <include
+            android:id="@+id/cv_packaging"
+            layout="@layout/cardview_packaging"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/title_packaging"
+            app:layout_constraintStart_toStartOf="@id/products1"
+            app:layout_constraintEnd_toEndOf="@id/tv_title_products"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/title_distribution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="21dp"
+            android:text="Distribution"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@id/cv_packaging"
+            app:layout_constraintStart_toStartOf="@id/cv_packaging"
+            app:layout_constraintTop_toBottomOf="@+id/cv_packaging" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/lines"
+            app:layout_constraintBottom_toTopOf="@id/title_distribution"
+            app:layout_constraintEnd_toEndOf="@id/title_distribution"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/title_distribution"
+            app:layout_constraintTop_toBottomOf="@id/title_distribution"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <include
+            android:id="@+id/cv_distribution"
+            layout="@layout/cardview_distribution"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/title_distribution"
+            app:layout_constraintStart_toStartOf="@id/products1"
+            app:layout_constraintEnd_toEndOf="@id/tv_title_products"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="20dp"/>
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

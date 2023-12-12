@@ -1,0 +1,33 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:layout_gravity="center"
+    app:cardCornerRadius="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/raw_material_img"
+            android:layout_width="match_parent"
+            android:layout_height="258dp"
+            android:src="@drawable/dummyimg1"
+            android:padding="5dp" />
+
+        <TextView
+            android:id="@+id/raw_material_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/raw_material_img"
+            android:text="Lorem ipsum dolor sit amet, ei causae incorrupte mel, praesent conceptam ea sed. Ne mei copiosae patrioque. Usu quando munere inciderint ad, in has nostro causae suscipiantur. Ne vocent eleifend sit, sea soleat aperiri cu. Ei quo modo omnesque disputationi. Principes expetendis ex mea, vis in esse dicant singulis, ne sit modus legendos."
+            android:layout_alignStart="@id/raw_material_img"
+            android:layout_alignEnd="@id/raw_material_img"
+            android:padding="10dp"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
