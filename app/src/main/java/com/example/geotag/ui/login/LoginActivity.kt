@@ -6,7 +6,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+
+import com.example.geotag.ui.main.MainActivity
 import com.example.geotag.R
 import com.example.geotag.data.models.LoginRequest
 import com.example.geotag.data.response.LoginResponse
@@ -14,6 +15,7 @@ import com.example.geotag.data.retrofit.apiService
 import com.example.geotag.data.retrofit.fetch
 import com.example.geotag.ui.main.MainActivity
 import com.example.geotag.ui.welcome.WelcomeActivity
+
 import retrofit2.Call
 
 class LoginActivity : AppCompatActivity() {
@@ -22,15 +24,16 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var passwordLayout: EditText
     private lateinit var backButton: ImageButton
     private lateinit var loginButton: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-
+        
         emailLayout = findViewById(R.id.input_email)
         passwordLayout = findViewById(R.id.input_password)
         backButton = findViewById(R.id.back_btn)
         loginButton = findViewById(R.id.btn_login)
+
 
         backButton.setOnClickListener {
             // Handle the back button click
