@@ -44,6 +44,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login () {
+        
         val email = emailLayout.text.toString()
         val password = passwordLayout.text.toString()
 
