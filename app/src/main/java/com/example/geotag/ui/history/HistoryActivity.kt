@@ -1,8 +1,8 @@
 package com.example.geotag.ui.history
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.geotag.R
@@ -23,27 +23,31 @@ class HistoryActivity : AppCompatActivity() {
         rvDatDum = findViewById(R.id.history_rv)
         rvDatDum.setHasFixedSize(true)
 
-        list.addAll(getDummy())
+//        list.addAll(getDummy())
         showRecyclerList()
         botBarBind()
         botNavView.selectedItemId = R.id.bottom_history
         botBarHandle()
     }
 
-    private fun getDummy(): ArrayList<Dummy> {
-        val datName = resources.getStringArray(R.array.data_name)
-        val datValDate = resources.getStringArray(R.array.data_valdate)
-        val datPic = resources.obtainTypedArray(R.array.data_pic)
-        val listDummys = ArrayList<Dummy>()
-        for (i in datName.indices){
-            val dat_dummys = Dummy(
-                datName[i],
-                datValDate[i],
-                datPic.getResourceId(i, -1,) )
-            listDummys.add(dat_dummys)
-        }
-        return  listDummys
+    private fun gethistory() {
+
     }
+
+//    private fun getDummy(): ArrayList<Dummy> {
+//        val datName = resources.getStringArray(R.array.data_name)
+//        val datValDate = resources.getStringArray(R.array.data_valdate)
+//        val datPic = resources.obtainTypedArray(R.array.data_pic)
+//        val listDummys = ArrayList<Dummy>()
+//        for (i in datName.indices){
+//            val dat_dummys = Dummy(
+//                datName[i],
+//                datValDate[i],
+//                datPic.getResourceId(i, -1,) )
+//            listDummys.add(dat_dummys)
+//        }
+//        return  listDummys
+//    }
 
     private fun showRecyclerList() {
         rvDatDum.layoutManager = LinearLayoutManager(this)

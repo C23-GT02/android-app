@@ -42,7 +42,7 @@
         android:layout_marginTop="100dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:hint="Name"
+        android:hint="First Name"
         app:endIconMode="clear_text"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +62,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:hint="Email"
+        android:hint="Last Name"
         app:endIconMode="clear_text"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         app:layout_constraintEnd_toEndOf="parent"
@@ -128,4 +128,14 @@
         app:layout_constraintStart_toStartOf="@id/layout_passwordreg"
         app:layout_constraintTop_toBottomOf="@id/layout_passwordreg" />
 
+    <ProgressBar
+        android:id="@+id/progres_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

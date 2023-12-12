@@ -1,4 +1,4 @@
-package com.example.geotag.data.pref
+package com.example.geotag.data.models
 
 data class RegisterModel (
     val firstname: String,

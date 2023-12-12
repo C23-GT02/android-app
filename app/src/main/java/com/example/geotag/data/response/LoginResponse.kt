@@ -1,12 +1,14 @@
 package com.example.geotag.data.response
 
-import com.google.gson.annotations.SerializedName
+data class LoginResponse (
+    val data: LoginResponseData,
+    val sessionCookie: String,
+)
 
-data class LoginResponse(
-
-	@field:SerializedName("password")
-	val password: String,
-
-	@field:SerializedName("email")
-	val email: String
+data class LoginResponseData(
+    val idToken: String,
+    val uid: String,
+    val businessName: String,
+    val email: String,
+    val role: String
 )
