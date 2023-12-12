@@ -8,52 +8,71 @@ import android.widget.ImageButton
 import android.widget.Toast
 import com.example.geotag.ui.main.MainActivity
 import com.example.geotag.R
+import com.example.geotag.data.models.LoginModel
+import com.example.geotag.data.response.LoginResponse
+import com.example.geotag.data.retrofit.apiService
+import com.example.geotag.data.retrofit.fetch
 import com.example.geotag.ui.welcome.WelcomeActivity
 import com.google.android.material.textfield.TextInputLayout
+import retrofit2.Call
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var emailLayout: TextInputLayout
     private lateinit var passwordLayout: TextInputLayout
+    private lateinit var backButton: ImageButton
+    private lateinit var loginButton: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val backButton = findViewById<ImageButton>(R.id.back_btn)
         emailLayout = findViewById(R.id.layout_email)
         passwordLayout = findViewById(R.id.layout_password)
+        backButton = findViewById(R.id.back_btn)
+        loginButton = findViewById(R.id.btn_login)
 
         backButton.setOnClickListener {
             // Handle the back button click
             navigateBackToWelcomeActivity()
         }
 
-        val loginButton: Button = findViewById(R.id.btn_login)
         loginButton.setOnClickListener {
-            performLogin()
+            login()
         }
     }
 
-    private fun performLogin() {
-        val email = emailLayout.editText?.text.toString()
-        val password = passwordLayout.editText?.text.toString()
+    private fun login () {
+        val email = emailLayout.editText.toString()
+        val password = passwordLayout.editText.toString()
 
-        // Perform your login logic here
-        // You can add validation and authentication code
+        val loginRequest = LoginModel(email, password)
+        val call: Call<LoginResponse> = apiService.loginUser(loginRequest)
 
-        // For example, displaying a toast message
-        if (email.isNotEmpty() && password.isNotEmpty()) {
-            Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
-            navigateToHomeActivity()
-        } else {
-            Toast.makeText(this, "Please enter valid email and password", Toast.LENGTH_SHORT).show()
-        }
+        fetch(call,
+            success = { response, header ->
+                if (header != null) {
+                    if (response?.data !== null) {
+                        showToast("Login successful")
+                        navigateToHomeActivity()
+                    }
+                }
+            },
+            error = { code, message ->
+                // Handle error
+                showToast("Login failed: $message")
+            }
+        )
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
         // Override the back button press
         navigateBackToWelcomeActivity()
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     private fun navigateBackToWelcomeActivity() {

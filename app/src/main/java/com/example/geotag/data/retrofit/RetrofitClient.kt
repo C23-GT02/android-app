@@ -38,7 +38,4 @@ fun <T> fetch(call: Call<T>, success: (T?, Map<String, String>?) -> Unit, error:
         }
     })
 }
-
-
-
 val apiService: ApiService = RetrofitClient.retrofit.create(ApiService::class.java)
