@@ -15,6 +15,7 @@ import com.example.geotag.data.retrofit.apiService
 import com.example.geotag.data.retrofit.fetch
 import com.example.geotag.ui.main.MainActivity
 import com.example.geotag.ui.welcome.WelcomeActivity
+import com.google.android.material.textfield.TextInputLayout
 
 import retrofit2.Call
 
@@ -25,6 +26,10 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var backButton: ImageButton
     private lateinit var loginButton: Button
 
+
+    private lateinit var emailLayout: TextInputLayout
+    private lateinit var passwordLayout: TextInputLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -33,6 +38,11 @@ class LoginActivity : AppCompatActivity() {
         passwordLayout = findViewById(R.id.input_password)
         backButton = findViewById(R.id.back_btn)
         loginButton = findViewById(R.id.btn_login)
+
+        val backButton = findViewById<ImageButton>(R.id.back_btn)
+        val loginBtn = findViewById<Button>(R.id.btn_login)
+        emailLayout = findViewById(R.id.layout_email)
+        passwordLayout = findViewById(R.id.layout_password)
 
 
         backButton.setOnClickListener {
