@@ -109,15 +109,16 @@
         android:id="@+id/edt_account_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="8dp"
         android:text="Edit Account"
         android:textSize="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="20dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintTop_toBottomOf="@id/setting_tv"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/reset_password_tv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/reset_password_tv"/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/setting_tv" />
 
 
     <ImageView
@@ -148,14 +149,16 @@
         android:id="@+id/reset_password_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="7dp"
         android:text="Reset Account"
         android:textSize="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/line_profile3"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintTop_toBottomOf="@id/edt_account_tv"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/edt_account_tv" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -174,8 +177,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        android:layout_marginBottom="7dp"
         android:src="@drawable/line2"
+        app:layout_constraintBottom_toTopOf="@+id/about_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/reset_password_tv" />
@@ -200,15 +203,15 @@
         android:id="@+id/about_us_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
         android:text="About Us"
         android:textSize="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="20dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintTop_toBottomOf="@id/about_tv"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/line_profile4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf=""/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/about_tv" />
 
     <ImageView
         android:layout_width="27dp"
@@ -229,6 +232,7 @@
         android:layout_marginTop="7dp"
         android:layout_marginBottom="7dp"
         android:src="@drawable/line2"
+        app:layout_constraintBottom_toTopOf="@+id/help_center_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/about_us_tv" />
@@ -237,15 +241,15 @@
         android:id="@+id/help_center_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="Help Center"
         android:textSize="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="20dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintTop_toBottomOf="@id/about_us_tv"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/line_profile5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf=""/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/about_us_tv" />
 
     <ImageView
         android:layout_width="27dp"
@@ -266,6 +270,7 @@
         android:layout_marginTop="7dp"
         android:layout_marginBottom="7dp"
         android:src="@drawable/line2"
+        app:layout_constraintBottom_toTopOf="@+id/logout_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/help_center_tv" />
@@ -274,15 +279,15 @@
         android:id="@+id/logout_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="Logout"
         android:textSize="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="20dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintTop_toBottomOf="@id/help_center_tv"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/line_profile6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf=""/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/help_center_tv" />
 
     <ImageView
         android:layout_width="27dp"
@@ -301,8 +306,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        android:layout_marginBottom="7dp"
+        android:layout_marginBottom="143dp"
+
         android:src="@drawable/line2"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logout_tv" />
