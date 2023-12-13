@@ -6,16 +6,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
-
-import com.example.geotag.ui.main.MainActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.example.geotag.R
 import com.example.geotag.data.models.LoginRequest
 import com.example.geotag.data.response.LoginResponse
 import com.example.geotag.data.retrofit.apiService
 import com.example.geotag.data.retrofit.fetch
+import com.example.geotag.ui.main.MainActivity
 import com.example.geotag.ui.welcome.WelcomeActivity
-import com.google.android.material.textfield.TextInputLayout
-
 import retrofit2.Call
 
 class LoginActivity : AppCompatActivity() {
