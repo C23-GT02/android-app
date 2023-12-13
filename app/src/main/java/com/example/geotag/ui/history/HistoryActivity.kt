@@ -17,37 +17,39 @@ class HistoryActivity : AppCompatActivity() {
     private val list = ArrayList<Dummy>()
     private lateinit var botNavView: BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
+        //TODO membuat history
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
 
         rvDatDum = findViewById(R.id.history_rv)
         rvDatDum.setHasFixedSize(true)
 
-//        list.addAll(getDummy())
+        list.addAll(getDummy())
         showRecyclerList()
         botBarBind()
         botNavView.selectedItemId = R.id.bottom_history
         botBarHandle()
     }
 
-    private fun gethistory() {
-
-    }
-
-//    private fun getDummy(): ArrayList<Dummy> {
-//        val datName = resources.getStringArray(R.array.data_name)
-//        val datValDate = resources.getStringArray(R.array.data_valdate)
-//        val datPic = resources.obtainTypedArray(R.array.data_pic)
-//        val listDummys = ArrayList<Dummy>()
-//        for (i in datName.indices){
-//            val dat_dummys = Dummy(
-//                datName[i],
-//                datValDate[i],
-//                datPic.getResourceId(i, -1,) )
-//            listDummys.add(dat_dummys)
-//        }
-//        return  listDummys
+//    private fun gethistory() {
+//
 //    }
+
+    private fun getDummy(): ArrayList<Dummy> {
+        val datName = resources.getStringArray(R.array.data_name)
+        val datValDate = resources.getStringArray(R.array.data_valdate)
+        val datPic = resources.obtainTypedArray(R.array.data_pic)
+        val listDummys = ArrayList<Dummy>()
+        for (i in datName.indices){
+            val dat_dummys = Dummy(
+                datName[i],
+                datValDate[i],
+                datPic.getResourceId(i, -1,) )
+            listDummys.add(dat_dummys)
+        }
+        return  listDummys
+    }
 
     private fun showRecyclerList() {
         rvDatDum.layoutManager = LinearLayoutManager(this)

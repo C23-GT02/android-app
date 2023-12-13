@@ -8,6 +8,7 @@ import com.example.geotag.R
 import com.example.geotag.data.dummys.Dummy
 import com.example.geotag.data.holder.ListDataHolder
 
+//TODO ambil history dari API
 class ListDummyAdapter(private val listDatDummy: ArrayList<Dummy>) : RecyclerView.Adapter<ListDataHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListDataHolder {

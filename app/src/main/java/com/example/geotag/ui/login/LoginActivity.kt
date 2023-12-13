@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import com.example.geotag.ui.main.MainActivity
@@ -13,13 +14,12 @@ import com.example.geotag.data.response.LoginResponse
 import com.example.geotag.data.retrofit.apiService
 import com.example.geotag.data.retrofit.fetch
 import com.example.geotag.ui.welcome.WelcomeActivity
-import com.google.android.material.textfield.TextInputLayout
 import retrofit2.Call
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var emailLayout: TextInputLayout
-    private lateinit var passwordLayout: TextInputLayout
+    private lateinit var emailLayout: EditText
+    private lateinit var passwordLayout: EditText
     private lateinit var backButton: ImageButton
     private lateinit var loginButton: Button
 
@@ -27,8 +27,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        emailLayout = findViewById(R.id.layout_email)
-        passwordLayout = findViewById(R.id.layout_password)
+        emailLayout = findViewById(R.id.input_email)
+        passwordLayout = findViewById(R.id.input_password)
         backButton = findViewById(R.id.back_btn)
         loginButton = findViewById(R.id.btn_login)
 
@@ -43,8 +43,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login () {
-        val email = emailLayout.editText.toString()
-        val password = passwordLayout.editText.toString()
+        val email = emailLayout.text.toString()
+        val password = passwordLayout.text.toString()
 
         val loginRequest = LoginModel(email, password)
         val call: Call<LoginResponse> = apiService.loginUser(loginRequest)
@@ -65,14 +65,14 @@ class LoginActivity : AppCompatActivity() {
         )
     }
 
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
     override fun onBackPressed() {
         super.onBackPressed()
         // Override the back button press
         navigateBackToWelcomeActivity()
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     private fun navigateBackToWelcomeActivity() {

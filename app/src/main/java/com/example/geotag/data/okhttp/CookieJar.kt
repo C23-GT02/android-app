@@ -15,4 +15,3 @@ class MyCookieJar : CookieJar {
         return cookieStore[url.host] ?: emptyList()
     }
 }
-
