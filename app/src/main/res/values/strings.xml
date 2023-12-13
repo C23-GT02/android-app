@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">GeoTag</string>
     <string name="product1">Tumbler Lokatara by SaeWooden</string>
+    <string name="title_activity_login">LoginActivity</string>
     <string name="historycode">2023-11-09T18:30:45</string>
     <string name="homestring">Home</string>
     <string name="scanstring">Scan</string>
