@@ -1,20 +1,28 @@
 package com.example.geotag.ui.history
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.geotag.R
 import com.example.geotag.data.adapter.HistoryAdapter
+import com.example.geotag.data.models.HistoryModel
 import com.example.geotag.data.response.ResponseHistory
+import com.example.geotag.data.response.ResponseHistoryItem
 import com.example.geotag.data.retrofit.apiService
 import com.example.geotag.data.retrofit.fetch
 import com.example.geotag.ui.main.MainActivity
 import com.example.geotag.ui.profile.ProfileActivity
 import com.example.geotag.ui.scan.ScanActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HistoryActivity : AppCompatActivity() {
     private lateinit var botNavView: BottomNavigationView
@@ -25,39 +33,41 @@ class HistoryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_history)
 
         historyRecyclerView = findViewById(R.id.history_rv)
+        historyRecyclerView.setHasFixedSize(true)
         historyRecyclerView.layoutManager = LinearLayoutManager(this)
 
         // Assuming you have a method to fetch history data from API
         fetchHistoryData()
+
         botBarBind()
         botNavView.selectedItemId = R.id.bottom_history
         botBarHandle()
     }
 
     private fun fetchHistoryData() {
-        val call = apiService.getHistory()
-        fetch(call, this::handleHistorySuccess, this::handleError)
-    }
+        val sharedPreferences = getSharedPreferences("login_data", Context.MODE_PRIVATE)
+        val email = sharedPreferences.getString("email", "")
+        val dataHistory = HistoryModel(email!!)
+        val fetchHistory: Call<List<ResponseHistoryItem>> = apiService.getHistory(dataHistory)
 
-    private fun handleHistorySuccess(history: ResponseHistory?, headers: Map<String, String>?) {
-        history?.let {
-            if (it.responseHistory.isNotEmpty()) {
-                // Initialize and set the adapter after receiving the data
-                historyAdapter = HistoryAdapter(this, it.responseHistory)
-                historyRecyclerView.adapter = historyAdapter
-            } else {
-                // Handle empty data scenario
-                Log.e("HistoryActivity", "ResponseHistory is empty")
+        fetch(
+            fetchHistory,
+            success = { historyList, _ ->
+                if (historyList!!.isNotEmpty()) {
+                    // Initialize and set the adapter after receiving the data
+                    historyAdapter = historyList?.let { HistoryAdapter(this, it) }!!
+                    historyRecyclerView.adapter = historyAdapter
+                } else {
+                    // Handle empty data scenario
+                    Log.e("HistoryActivity", "ResponseHistory is empty")
+                }
+            },
+            error = { code, message ->
+                // Handle the error case
+                showToast("API call failed: $message")
+                // You can display an error message or take appropriate action
             }
-        } ?: run {
-            // Handle the case where history is null
-            Log.e("HistoryActivity", "ResponseHistory is null")
-        }
-    }
-
-    private fun handleError(statusCode: Int, errorMessage: String) {
-        // Handle error
-        Log.e("HistoryActivity", "Error: $statusCode - $errorMessage")
+        )
     }
 
     private fun botBarHandle() {
@@ -93,6 +103,10 @@ class HistoryActivity : AppCompatActivity() {
     private fun loadActivities(activity: AppCompatActivity) {
         startActivity(Intent(applicationContext, activity::class.java))
         finish()
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
 

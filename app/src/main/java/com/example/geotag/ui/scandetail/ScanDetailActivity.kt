@@ -98,8 +98,6 @@ class ScanDetailActivity : AppCompatActivity() {
                 // You can display an error message or take appropriate action
             }
         )
-
-
     }
 
     private fun showToast(message: String) {

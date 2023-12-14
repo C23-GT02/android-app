@@ -38,7 +38,7 @@ class RegisterActivity : AppCompatActivity() {
         emailEditText = findViewById(R.id.input_emailreg)
         passwordEditText = findViewById(R.id.input_passwordreg)
         registerButton = findViewById(R.id.btn_registerbtn)
-        progressBar = findViewById(R.id.progres_bar)  // Add this line
+        progressBar = findViewById(R.id.progres_bar2)  // Add this line
 
         // Set click listener for the register button
         registerButton.setOnClickListener {

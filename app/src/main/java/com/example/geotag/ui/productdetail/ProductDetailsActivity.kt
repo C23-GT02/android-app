@@ -9,6 +9,6 @@ class ProductDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_details)
 
-        //TODO membuat detail activity
+        //TODO membuat cara agar ketika produk di klik di main activity intent ke sini
     }
 }

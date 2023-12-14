@@ -1,5 +1,6 @@
 package com.example.geotag.data.retrofit
 
+import com.example.geotag.data.models.HistoryModel
 import com.example.geotag.data.models.LoginModel
 import com.example.geotag.data.models.RegisterModel
 import com.example.geotag.data.models.UserDataProfile
@@ -7,6 +8,7 @@ import com.example.geotag.data.response.HomeResponse
 import com.example.geotag.data.response.LoginResponse
 import com.example.geotag.data.response.Product
 import com.example.geotag.data.response.ResponseHistory
+import com.example.geotag.data.response.ResponseHistoryItem
 import com.example.geotag.data.response.SignUpResponse
 import retrofit2.Call
 import retrofit2.http.Body
@@ -31,8 +33,10 @@ interface ApiService {
     fun getHome(): Call<HomeResponse>
 
     //History
-    @GET("history")
-    fun getHistory(): Call<ResponseHistory>
+    @POST("history")
+    fun getHistory(
+        @Body request: HistoryModel
+    ): Call<List<ResponseHistoryItem>>
 
     @GET("qr")
     fun scanQr(@Query("productRef") ref: String): Call<Product>

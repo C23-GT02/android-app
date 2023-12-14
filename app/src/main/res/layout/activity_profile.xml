@@ -290,6 +290,7 @@
         app:layout_constraintTop_toBottomOf="@id/help_center_tv" />
 
     <ImageView
+        android:id="@+id/logout_icon"
         android:layout_width="27dp"
         android:layout_height="18dp"
         android:layout_marginEnd="20dp"
