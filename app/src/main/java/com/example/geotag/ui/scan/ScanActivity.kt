@@ -3,13 +3,16 @@ package com.example.geotag.ui.scan
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.geotag.data.models.QrPayload
 import com.example.geotag.databinding.ActivityScanBinding
 import com.example.geotag.ui.scandetail.ScanDetailActivity
+import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
 import com.journeyapps.barcodescanner.ScanOptions
@@ -38,16 +41,31 @@ class ScanActivity : AppCompatActivity() {
         }
     }
 
-    private val scanLauncher = registerForActivityResult(ScanContract()){ result: ScanIntentResult ->
+    private val scanLauncher = registerForActivityResult(ScanContract()) { result: ScanIntentResult ->
         run {
             if (result.contents == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show()
             } else {
-//                setResult(result.contents)
-                navigateToScanDetail(result.contents)
+                try {
+                    val jsonData = Gson().fromJson(result.contents, QrPayload::class.java)
+
+                    // Check if the scanned data matches the structure of the QrPayload data class
+                    if (jsonData is QrPayload) {
+                        navigateToScanDetail(jsonData)
+                    } else {
+                        // If not matching, continue scanning or handle as needed
+                        Toast.makeText(this, "Scanned data doesn't match the expected format", Toast.LENGTH_SHORT).show()
+                        // Optionally, initiate another scan
+                        // startScan()
+                    }
+                } catch (e: JsonSyntaxException) {
+                    Toast.makeText(this, "Invalid JSON format", Toast.LENGTH_SHORT).show()
+                    // Optionally, handle the case where JSON parsing fails
+                }
             }
         }
     }
+
 
     private fun requestPermissionCamera(context: Context) {
         if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
@@ -73,13 +91,17 @@ class ScanActivity : AppCompatActivity() {
         scanLauncher.launch(options)
     }
 
-    private fun navigateToScanDetail(scannedResult: String) {
+    private fun navigateToScanDetail(scannedResult: QrPayload) {
         val intent = Intent(this, ScanDetailActivity::class.java)
-        intent.putExtra("SCAN_RESULT", scannedResult)
+
+        // Pass the scanned result as an extra to the intent
+        intent.putExtra("QrPayload", scannedResult)
+        // Start the ScanDetailActivity with the intent
         startActivity(intent)
     }
 
-    private fun setResult(string: String){
-        binding.textResult.text = string
-    }
+//
+//    private fun setResult(string: String){
+//        binding.textResult.text = string
+//    }
 }

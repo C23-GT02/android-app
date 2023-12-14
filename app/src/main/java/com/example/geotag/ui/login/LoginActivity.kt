@@ -1,18 +1,20 @@
 package com.example.geotag.ui.login
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
-import com.example.geotag.ui.main.MainActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.example.geotag.R
 import com.example.geotag.data.models.LoginModel
 import com.example.geotag.data.response.LoginResponse
 import com.example.geotag.data.retrofit.apiService
 import com.example.geotag.data.retrofit.fetch
+import com.example.geotag.ui.main.MainActivity
 import com.example.geotag.ui.welcome.WelcomeActivity
 import retrofit2.Call
 
@@ -22,6 +24,9 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var passwordLayout: EditText
     private lateinit var backButton: ImageButton
     private lateinit var loginButton: Button
+    private lateinit var emailUser: String
+
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +37,18 @@ class LoginActivity : AppCompatActivity() {
         backButton = findViewById(R.id.back_btn)
         loginButton = findViewById(R.id.btn_login)
 
+        sharedPreferences = getSharedPreferences("login_data", Context.MODE_PRIVATE)
+
+        // Check if there is a saved email in SharedPreferences
+        val savedEmail = sharedPreferences.getString("email", "")
+        if (savedEmail != null) {
+            if (savedEmail.isNotEmpty()) {
+                // Auto-fill the email field if there is a saved email
+                emailLayout.setText(savedEmail)
+            }
+        }
+
         backButton.setOnClickListener {
-            // Handle the back button click
             navigateBackToWelcomeActivity()
         }
 
@@ -42,24 +57,31 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun login () {
+    private fun login() {
         val email = emailLayout.text.toString()
         val password = passwordLayout.text.toString()
 
         val loginRequest = LoginModel(email, password)
         val call: Call<LoginResponse> = apiService.loginUser(loginRequest)
 
-        fetch(call,
+        fetch(
+            call,
             success = { response, header ->
                 if (header != null) {
                     if (response?.data !== null) {
+                        emailUser = response.data.email
                         showToast("Login successful")
+
+                        // Save the email in SharedPreferences after successful login
+                        saveEmailInPreferences(response)
+
                         navigateToHomeActivity()
+                    } else {
+                        showToast("Login failed: No data in the response")
                     }
                 }
             },
-            error = { code, message ->
-                // Handle error
+            error = { _, message ->
                 showToast("Login failed: $message")
             }
         )
@@ -69,9 +91,20 @@ class LoginActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
+    private fun saveEmailInPreferences(cookie: LoginResponse) {
+        // Save the email in SharedPreferences
+        val editor = sharedPreferences.edit()
+        editor.putString("data", cookie.data.toString())
+        editor.putString("session", cookie.sessionCookie)
+        editor.putString("email", cookie.data.email)
+        editor.apply()
+    }
+
+    @Suppress("DEPRECATION")
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         super.onBackPressed()
-        // Override the back button press
+        // Handle the back button press
         navigateBackToWelcomeActivity()
     }
 
