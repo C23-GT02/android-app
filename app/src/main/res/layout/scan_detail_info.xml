@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="400dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="#455B2A">
+
+    <TextView
+        android:id="@+id/uid_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Unique ID:"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/line_scan1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/uid_value_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CJMEcsxct1SH1RegnESLdv"
+        android:textAlignment="textEnd"
+        android:textColor="@color/white"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/uid_title_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/uid_title_tv"
+        app:layout_constraintTop_toTopOf="@id/uid_title_tv"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/line_scan1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/line3"
+        app:layout_constraintEnd_toEndOf="@+id/uid_value_tv"
+        app:layout_constraintStart_toStartOf="@id/uid_title_tv"
+        app:layout_constraintTop_toBottomOf="@id/uid_title_tv"
+        app:layout_constraintBottom_toTopOf="@+id/product_name_title_tv"/>
+
+    <TextView
+        android:id="@+id/product_name_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Product Name:"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/line_scan2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line_scan1" />
+
+    <TextView
+        android:id="@+id/product_name_value_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lorem ipsum dolor sit amet"
+        android:textAlignment="textEnd"
+        android:textColor="@color/white"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/product_name_title_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/product_name_title_tv"
+        app:layout_constraintTop_toTopOf="@id/product_name_title_tv"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/line_scan2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/line3"
+        app:layout_constraintBottom_toTopOf="@+id/owner_name_title_tv"
+        app:layout_constraintEnd_toEndOf="@id/product_name_value_tv"
+        app:layout_constraintStart_toStartOf="@id/product_name_title_tv"
+        app:layout_constraintTop_toBottomOf="@id/product_name_title_tv" />
+
+    <TextView
+        android:id="@+id/owner_name_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Owner Name:"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line_scan2" />
+
+    <TextView
+        android:id="@+id/owner_name_value_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="John Doe"
+        android:textAlignment="textEnd"
+        android:textColor="@color/white"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintStart_toEndOf="@id/owner_name_title_tv"
+        app:layout_constraintTop_toTopOf="@id/owner_name_title_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/owner_name_title_tv"
+        app:layout_constraintHorizontal_bias="1.0"/>
+
+    <ImageView
+        android:id="@+id/line_scan3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/line3"
+        app:layout_constraintBottom_toTopOf="@+id/scan_date_title_tv"
+        app:layout_constraintEnd_toEndOf="@id/owner_name_value_tv"
+        app:layout_constraintStart_toStartOf="@id/owner_name_title_tv"
+        app:layout_constraintTop_toBottomOf="@id/owner_name_title_tv" />
+
+    <TextView
+        android:id="@+id/scan_date_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Date Scan:"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/line_scan3"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/scan_date_value_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2023-11-09T18:30:45"
+        android:textAlignment="textEnd"
+        android:textColor="@color/white"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintStart_toEndOf="@id/scan_date_title_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/scan_date_title_tv"
+        app:layout_constraintBottom_toBottomOf="@id/scan_date_title_tv"
+        app:layout_constraintHorizontal_bias="1.0"/>
+
+    <ImageView
+        android:id="@+id/line_scan4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/line3"
+        app:layout_constraintTop_toBottomOf="@id/scan_date_title_tv"
+        app:layout_constraintStart_toStartOf="@id/scan_date_title_tv"
+        app:layout_constraintEnd_toEndOf="@id/scan_date_value_tv"/>
+
+    <TextView
+        android:id="@+id/description_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="326dp"
+        android:text="Description:"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line_scan4" />
+
+    <TextView
+        android:id="@+id/description_value_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Lorem ipsum dolor sit amet, ei causae incorrupte mel, praesent conceptam ea sed. Ne mei copiosae patrioque. Usu quando munere inciderint ad, in has nostro causae suscipiantur. Ne vocent eleifend sit, sea soleat aperiri cu. Ei quo modo omnesque disputationi. Principes expetendis ex mea, vis in esse dicant singulis, ne sit modus legendos."
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/description_title_tv" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,7 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +19,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GeoTag"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.scandetail.ScanDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.scan.ScanActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.productdetail.ProductDetailsActivity"
             android:exported="false" />
@@ -43,6 +54,10 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="false" />
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="android:screenOrientation" />
     </application>
 
 </manifest>
