@@ -16,7 +16,6 @@ object RetrofitClient {
         .client(okHttpClient)
         .build()
 }
-
 // Fetch API Endpoints
 fun <T> fetch(call: Call<T>, success: (T?, Map<String, String>?) -> Unit, error: (Int, String) -> Unit) {
     call.enqueue(object : Callback<T> {

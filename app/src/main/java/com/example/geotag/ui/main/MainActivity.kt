@@ -23,6 +23,7 @@ import com.example.geotag.data.retrofit.ApiService
 import com.example.geotag.data.retrofit.apiService
 import com.example.geotag.data.retrofit.fetch
 import com.example.geotag.ui.history.HistoryActivity
+import com.example.geotag.ui.scan.ScanActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import retrofit2.Call
 
@@ -106,6 +107,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.bottom_home -> true
                 R.id.bottom_history -> {
                     loadActivities(HistoryActivity())
+                    true
+                }
+                R.id.bottom_scan ->{
+                    loadActivities(ScanActivity())
                     true
                 }
                 R.id.bottom_profile -> {

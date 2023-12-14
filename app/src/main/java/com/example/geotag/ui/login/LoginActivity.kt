@@ -57,6 +57,8 @@ class LoginActivity : AppCompatActivity() {
                     if (response?.data !== null) {
                         showToast("Login successful")
                         navigateToHomeActivity()
+                    } else {
+                        showToast("Login failed: No data in the response")
                     }
                 }
             },
