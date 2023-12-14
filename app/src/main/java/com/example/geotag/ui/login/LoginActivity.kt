@@ -8,7 +8,7 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.geotag.R
-import com.example.geotag.data.models.LoginRequest
+import com.example.geotag.data.models.LoginModel
 import com.example.geotag.data.response.LoginResponse
 import com.example.geotag.data.retrofit.apiService
 import com.example.geotag.data.retrofit.fetch
@@ -48,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
         val email = emailLayout.text.toString()
         val password = passwordLayout.text.toString()
 
-        val loginRequest = LoginRequest(email, password)
+        val loginRequest = LoginModel(email, password)
         val call: Call<LoginResponse> = apiService.loginUser(loginRequest)
 
         fetch(call,
@@ -71,6 +71,8 @@ class LoginActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
+    @Suppress("DEPRECATION")
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         super.onBackPressed()
         // Handle the back button press
