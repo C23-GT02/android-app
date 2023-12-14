@@ -39,14 +39,8 @@ class LoginActivity : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences("login_data", Context.MODE_PRIVATE)
 
-        // Check if there is a saved email in SharedPreferences
-        val savedEmail = sharedPreferences.getString("email", "")
-        if (savedEmail != null) {
-            if (savedEmail.isNotEmpty()) {
-                // Auto-fill the email field if there is a saved email
-                emailLayout.setText(savedEmail)
-            }
-        }
+        // Check login status
+        checkLoginStatus()
 
         backButton.setOnClickListener {
             navigateBackToWelcomeActivity()
@@ -85,6 +79,17 @@ class LoginActivity : AppCompatActivity() {
                 showToast("Login failed: $message")
             }
         )
+    }
+
+    private fun checkLoginStatus() {
+        // Check if the email is already saved in SharedPreferences
+        val savedEmail = sharedPreferences.getString("email", "")
+        if (savedEmail != null) {
+            if (savedEmail.isNotEmpty()) {
+                // If there is a saved email, proceed to the home activity
+                navigateToHomeActivity()
+            }
+        }
     }
 
     private fun showToast(message: String) {

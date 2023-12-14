@@ -1,6 +1,8 @@
 package com.example.geotag.ui.main
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +11,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +26,7 @@ import com.example.geotag.data.retrofit.ApiService
 import com.example.geotag.data.retrofit.apiService
 import com.example.geotag.data.retrofit.fetch
 import com.example.geotag.ui.history.HistoryActivity
+import com.example.geotag.ui.login.LoginActivity
 import com.example.geotag.ui.scan.ScanActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import retrofit2.Call
@@ -36,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var botNavView: BottomNavigationView
     private lateinit var productAdapter: ProductAdapter
 //    private lateinit var partnerAdapter: PartnersAdapter
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,12 +56,19 @@ class MainActivity : AppCompatActivity() {
         val layoutManager = GridLayoutManager(this, numberOfColumns)
         recyclerView.layoutManager = layoutManager
 
+        // Initialize sharedPreferences
+        sharedPreferences = getSharedPreferences("login_data", Context.MODE_PRIVATE)
 
-//        fetchProducts(apiService)
+        // Check login status
+        checkLoginStatus()
+
+        //fetchProducts(apiService)
         fetchPartners(apiService)
         botBarBind()
         botNavView.selectedItemId = R.id.bottom_home
         botBarHandle()
+        // Set up back button behavior
+        setupBackButtonBehavior()
     }
 
     //for partner
@@ -85,18 +97,18 @@ class MainActivity : AppCompatActivity() {
         val linearLayout = findViewById<LinearLayout>(R.id.hz_linearlayout)
 
         for (partner in partnerCollection) {
-            val partnerView = LayoutInflater.from(this).inflate(R.layout.patner_item_row, null)
+            val partnerView = LayoutInflater.from(this).inflate(R.layout.patner_item_row, linearLayout, false)
             val partnerLogo = partnerView.findViewById<ImageView>(R.id.partnerpic_img)
-            val partnerTitelTv = partnerView.findViewById<TextView>(R.id.tv_partnername)
+            val partnerTitleTv = partnerView.findViewById<TextView>(R.id.tv_partnername)
 
-            // Load image using Glide or Picasso, assuming partner.logo is a String URL
+// Load image using Glide or Picasso, assuming partner.logo is a String URL
             Glide.with(this)
                 .load(partner.logo)
                 .into(partnerLogo)
 
-            partnerTitelTv.text = partner.displayName
+            partnerTitleTv.text = partner.displayName
 
-            // Add the partner view to the linear layout
+// Add the partner view to the linear layout
             linearLayout.addView(partnerView)
         }
     }
@@ -122,6 +134,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun checkLoginStatus() {
+        // Check if the email is already saved in SharedPreferences
+        val savedEmail = sharedPreferences.getString("email", "")
+        if (savedEmail.isNullOrEmpty()) {
+            // If there is no saved email, navigate back to login activity
+            navigateToLoginActivity()
+        }
+    }
+
+    private fun navigateToLoginActivity() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish() // Finish the current activity to remove it from the stack
+    }
+
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
@@ -133,6 +160,21 @@ class MainActivity : AppCompatActivity() {
     private fun loadActivities(activity: AppCompatActivity) {
         startActivity(Intent(applicationContext, activity::class.java))
         finish()
+    }
+
+    private fun setupBackButtonBehavior() {
+        // Override the default behavior of the back button
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Handle the back button press
+                exitApp()
+            }
+        })
+    }
+
+    private fun exitApp() {
+        // Perform any cleanup or additional logic before exiting the app, if needed
+        finishAffinity() // Finish all activities in the task, effectively exiting the app
     }
 }
 
