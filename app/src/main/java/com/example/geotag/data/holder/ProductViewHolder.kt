@@ -1,5 +1,6 @@
 package com.example.geotag.data.holder
 
+import android.content.Intent
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -8,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.geotag.R
 import com.example.geotag.data.response.Product
+import com.example.geotag.ui.productdetail.ProductDetailsActivity
 
 class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val productPict: ImageView = itemView.findViewById(R.id.productpic_img)
@@ -28,6 +30,13 @@ class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         itemView.setOnClickListener {
             // Handle click on the product item if needed
+            // Launch ProductDetailActivity with the selected product
+            val intent = Intent(itemView.context, ProductDetailsActivity::class.java)
+            intent.putExtra("productImages", product.images.toTypedArray())
+            intent.putExtra("productHarga", product.harga)
+            intent.putExtra("productMaterial", product.material)
+            // Add other fields as needed
+            itemView.context.startActivity(intent)
         }
     }
 }

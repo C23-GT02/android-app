@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.geotag.data.models.QrPayload
 import com.example.geotag.databinding.ActivityScanBinding
+import com.example.geotag.ui.main.MainActivity
 import com.example.geotag.ui.scandetail.ScanDetailActivity
+import com.example.geotag.ui.welcome.WelcomeActivity
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.journeyapps.barcodescanner.ScanContract
@@ -100,8 +102,20 @@ class ScanActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // Handle the back button press
+        navigateBackToHomeActivity()
+    }
+
+    private fun navigateBackToHomeActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish() // Finish the current activity to remove it from the stack
+    }
+}
+
 //
 //    private fun setResult(string: String){
 //        binding.textResult.text = string
 //    }
-}

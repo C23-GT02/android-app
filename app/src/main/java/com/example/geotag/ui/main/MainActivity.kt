@@ -101,14 +101,14 @@ class MainActivity : AppCompatActivity() {
             val partnerLogo = partnerView.findViewById<ImageView>(R.id.partnerpic_img)
             val partnerTitleTv = partnerView.findViewById<TextView>(R.id.tv_partnername)
 
-// Load image using Glide or Picasso, assuming partner.logo is a String URL
+            // Load image using Glide or Picasso, assuming partner.logo is a String URL
             Glide.with(this)
                 .load(partner.logo)
                 .into(partnerLogo)
 
             partnerTitleTv.text = partner.displayName
 
-// Add the partner view to the linear layout
+            // Add the partner view to the linear layout
             linearLayout.addView(partnerView)
         }
     }

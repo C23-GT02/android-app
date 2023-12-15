@@ -1,6 +1,8 @@
 package com.example.geotag.ui.scandetail
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -12,6 +14,7 @@ import com.example.geotag.data.models.UserDataProfile
 import com.example.geotag.data.response.Product
 import com.example.geotag.data.retrofit.apiService
 import com.example.geotag.data.retrofit.fetch
+import com.example.geotag.ui.history.HistoryActivity
 import retrofit2.Call
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -26,6 +29,7 @@ class ScanDetailActivity : AppCompatActivity() {
     private lateinit var timeStampTextView: TextView
     private lateinit var descriptionTextView: TextView
     private lateinit var imageProduct: ImageView
+    private lateinit var confirmButton: Button
 
 
     @Suppress("DEPRECATION")
@@ -42,6 +46,7 @@ class ScanDetailActivity : AppCompatActivity() {
         timeStampTextView = findViewById(R.id.scan_date_value_tv)
         descriptionTextView = findViewById(R.id.description_value_tv)
         imageProduct = findViewById(R.id.shapeableImageView)
+        confirmButton = findViewById(R.id.btn_confirm_ownership)
 
         // Retrieve the QrPayload from the intent
         qrPayload = intent.getParcelableExtra("QrPayload")
@@ -59,6 +64,12 @@ class ScanDetailActivity : AppCompatActivity() {
             showToast("QR code: ${qrPayload?.toString()}")
             // Make the API call asynchronously
              makeApiCall(qrPayload!!.productRef)
+        }
+
+        // Set OnClickListener for the Confirm Ownership button
+        confirmButton.setOnClickListener {
+            // Handle the button click event
+            onConfirmOwnershipButtonClick()
         }
     }
 
@@ -98,6 +109,17 @@ class ScanDetailActivity : AppCompatActivity() {
                 // You can display an error message or take appropriate action
             }
         )
+    }
+
+    private fun onConfirmOwnershipButtonClick() {
+        // Optionally, you can perform additional actions related to ownership confirmation
+
+        // Start the HistoryActivity
+        val historyIntent = Intent(this, HistoryActivity::class.java)
+        startActivity(historyIntent)
+
+        // Finish the current activity if needed
+        finish()
     }
 
     private fun showToast(message: String) {
